@@ -1,0 +1,72 @@
+@@@@@yum&service-module@@@@
+--- 
+- hosts: all
+  remote_user: ansible
+  become_user: root
+  become: yes
+  tasks: 
+  - yum: name=httpd state=latest
+  - service: name=httpd state=started
+  
+  @@@@@@install_module@@@@@
+--- 
+- hosts: all
+  become: yes  
+  tasks:
+  - name: install git
+    package: name=git state=latest
+	
+@@@@un-install-moduke@@@
+---
+- hosts: all
+  tasks:
+  - name: un-install git
+    package: name=git state=absent
+    become: yes
+
+@@@@@copy-module@@@@@@
+--- 
+- hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+  - name: copy the message file
+   
+   
+   @@@multi-modules@@@@
+--- 
+- hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+  - name: copy the message file
+    copy: src=/var/log/messages dest=/tmp/
+	file: path=/tmp/testfile state=touch
+  
+  @@@@patching-module@@@@@@
+---
+- hosts: hero
+  remote_user: ansible
+  become_user: root
+  become: yes
+  tasks:
+         - name: copy the patch script
+           copy: src=/etc/ansible/ospatch_14042022.sh dest=/tmp/
+         - name: set permissions
+           file: path=/tmp/ospatch_14042022.sh owner=root group=root mode=0755
+         - name: execute the script
+           shell: /bin/bash /tmp/ospatch_14042022.sh
+         - name: reboot the host
+           command: /sbin/reboot
+   @@@@launch-ec2-module@@@@
+---
+- hosts: localhost
+  tasks:
+  - name: launching ec2 instance
+    ec2:
+    key_name: ansible_key
+    instance_type: t2.micro
+    image: ami-aa5ebdd2
+    group: naresh1
+    vpc_subnet-id: subnet-77abc52f
+    region: us-west-2	
