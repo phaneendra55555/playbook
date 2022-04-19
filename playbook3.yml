@@ -1,0 +1,7 @@
+@@@@un-install-moduke@@@
+---
+- hosts: all
+  tasks:
+  - name: un-install git
+    package: name=git state=absent
+    become: yes

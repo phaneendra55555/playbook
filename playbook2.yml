@@ -1,0 +1,7 @@
+ @@@@@@install_module@@@@@
+--- 
+- hosts: all
+  become: yes  
+  tasks:
+  - name: install git
+    package: name=git state=latest

@@ -1,0 +1,9 @@
+@@@multi-modules@@@@
+--- 
+- hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+  - name: copy the message file
+    copy: src=/var/log/messages dest=/tmp/
+	file: path=/tmp/testfile state=touch

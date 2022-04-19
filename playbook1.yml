@@ -1,0 +1,9 @@
+@@@@@yum&service-module@@@@
+--- 
+- hosts: all
+  remote_user: ansible
+  become_user: root
+  become: yes
+  tasks: 
+  - yum: name=httpd state=latest
+  - service: name=httpd state=started

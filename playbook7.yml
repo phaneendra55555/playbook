@@ -1,0 +1,12 @@
+   @@@@launch-ec2-module@@@@
+---
+- hosts: localhost
+  tasks:
+  - name: launching ec2 instance
+    ec2:
+    key_name: ansible_key
+    instance_type: t2.micro
+    image: ami-aa5ebdd2
+    group: naresh1
+    vpc_subnet-id: subnet-77abc52f
+    region: us-west-2
