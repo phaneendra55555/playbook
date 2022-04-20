@@ -6,4 +6,4 @@
   tasks:
   - name: copy the message file
     copy: src=/var/log/messages dest=/tmp/
-	file: path=/tmp/testfile state=touch
+    file: path=/tmp/testfile state=touch
