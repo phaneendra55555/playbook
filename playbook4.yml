@@ -5,3 +5,4 @@
   become: yes
   tasks:
   - name: copy the message file
+    copy: src=/var/log/messages dest=/tmp/
