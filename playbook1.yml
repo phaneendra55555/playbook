@@ -5,5 +5,5 @@
   become_user: root
   become: yes
   tasks: 
-  - yum: name=httpd state=latest
+  - yum: name=httpd state=present
   - service: name=httpd state=started
